@@ -79,4 +79,4 @@ Directory not found: Ensure that the --data_dir matches the actual folder struct
 Contact:
 For any issues or queries, please contact:
 [f20220116@pilani.bits-pilani.ac.in]
-Thank you for evaluating our submission!
+Thank you for evaluating my submission!
