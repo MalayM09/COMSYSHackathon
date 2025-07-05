@@ -46,24 +46,54 @@ COMSYSHackathon/
 │           │       └── *.jpg
 │           └── ...
 
-Setup Instructions
-1. Clone the repository: 
-git clone https://github.com/YourUsername/COMSYSHackathon.git
+This guide explains how to use this repository to run model inference on your own validation dataset and generate output CSVs for evaluation.
+Step 1: Clone the Repository
+bash
+git clone https://github.com/<YourUsername>/COMSYSHackathon.git
 cd COMSYSHackathon
-2. Install Dependancies
+Step 2: Prepare the Validation Dataset
+Organize your validation data as follows (replace dataset/ with your actual data folder if needed):
+text
+dataset/
+├── Task_A/
+│   └── val/
+│       ├── male/
+│       │   └── *.jpg
+│       └── female/
+│           └── *.jpg
+└── Task_B/
+    └── val/
+        ├── 00001/
+        │   ├── *.jpg
+        │   └── distortion/
+        │       └── *.jpg
+        └── ...
+Task A: Place male and female images in their respective folders.
+Task B: Each identity should have its own folder, with images and (optionally) a distortion/ subfolder.
+Step 3: Install Dependencies
+Make sure you have Python 3.8+ and pip installed.
+Then, run:
+bash
 pip install -r requirements.txt
-3. How to run Inference:
-3a. Task A Gender Classification:
+Step 4: Run Inference for Task A (Gender Classification)
+bash
 python -m src.task_a_inference \
   --weights models/best_gender.pth \
   --data_dir dataset/Task_A/val \
   --output_csv results/results_task_a.csv
-3b. Task B Face Verification:
+You can also use models/best_joint.pth as --weights if you want to test the joint model.
+Step 5: Run Inference for Task B (Face Verification)
+bash
 python -m src.task_b_inference \
   --weights models/best_arcface.pth \
   --data_dir dataset/Task_B/val \
   --output_csv results/results_task_b.csv
-To use the joint model: replace best_arcface.pth or best_gender.pth with best_joint.pth.
+You can also use models/best_joint.pth as --weights if you want to test the joint model.
+Step 6: Find the Output
+The output CSVs will be saved in the results/ directory:
+results/results_task_a.csv
+results/results_task_b.csv
+Each CSV will contain predictions and true labels for your validation data.
 
 Output
 Results are saved as csv files in results/directory
@@ -75,6 +105,55 @@ Troubleshoot and FAQ:
 ModuleNotFoundError: Make sure all dependencies are installed (pip install -r requirements.txt)
 CUDA/Device errors: Check PyTorch installation and device availability
 Directory not found: Ensure that the --data_dir matches the actual folder structure
+
+This guide explains how to use this repository to run model inference on your own validation dataset and generate output CSVs for evaluation.
+Step 1: Clone the Repository
+bash
+git clone https://github.com/<YourUsername>/COMSYSHackathon.git
+cd COMSYSHackathon
+Step 2: Prepare the Validation Dataset
+Organize your validation data as follows (replace dataset/ with your actual data folder if needed):
+text
+dataset/
+├── Task_A/
+│   └── val/
+│       ├── male/
+│       │   └── *.jpg
+│       └── female/
+│           └── *.jpg
+└── Task_B/
+    └── val/
+        ├── 00001/
+        │   ├── *.jpg
+        │   └── distortion/
+        │       └── *.jpg
+        └── ...
+Task A: Place male and female images in their respective folders.
+Task B: Each identity should have its own folder, with images and (optionally) a distortion/ subfolder.
+Step 3: Install Dependencies
+Make sure you have Python 3.8+ and pip installed.
+Then, run:
+bash
+pip install -r requirements.txt
+Step 4: Run Inference for Task A (Gender Classification)
+bash
+python -m src.task_a_inference \
+  --weights models/best_gender.pth \
+  --data_dir dataset/Task_A/val \
+  --output_csv results/results_task_a.csv
+You can also use models/best_joint.pth as --weights if you want to test the joint model.
+Step 5: Run Inference for Task B (Face Verification)
+bash
+python -m src.task_b_inference \
+  --weights models/best_arcface.pth \
+  --data_dir dataset/Task_B/val \
+  --output_csv results/results_task_b.csv
+You can also use models/best_joint.pth as --weights if you want to test the joint model.
+Step 6: Find the Output
+The output CSVs will be saved in the results/ directory:
+results/results_task_a.csv
+results/results_task_b.csv
+Each CSV will contain predictions and true labels for your validation data.
 
 Contact:
 For any issues or queries, please contact:
