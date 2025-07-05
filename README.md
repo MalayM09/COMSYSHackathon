@@ -49,7 +49,7 @@ COMSYSHackathon/
 This guide explains how to use this repository to run model inference on your own validation dataset and generate output CSVs for evaluation.
 Step 1: Clone the Repository
 bash
-git clone https://github.com/<YourUsername>/COMSYSHackathon.git
+git clone https://github.com/MalayM09/COMSYSHackathon.git
 cd COMSYSHackathon
 Step 2: Prepare the Validation Dataset
 Organize your validation data as follows (replace dataset/ with your actual data folder if needed):
